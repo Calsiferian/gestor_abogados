@@ -1,0 +1,32 @@
+<!-- gestor_abogados/templates/base.html -->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor Abogados</title>
+    <!-- Agregar Bootstrap (puedes usar tu propia fuente de Bootstrap o CDN) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Incluir el navbar -->
+    {% include 'navbar.html' %}
+
+    {% if user.is_authenticated %}
+    <p>¡Hola, {{ user.username }}! Bienvenido de nuevo.</p>
+    {% else %}
+    <p>¡Hola! Por favor, inicia sesión.</p>
+    {% endif %}
+
+    <div class="container mt-4">
+        <!-- El contenido específico de cada plantilla se mostrará aquí -->
+        {% block content %}
+        {% endblock %}
+    </div>
+
+    <!-- Agregar Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>

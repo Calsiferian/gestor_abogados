@@ -57,7 +57,7 @@ ROOT_URLCONF = 'gestor_abogados.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],  # Aquí se indica que se busque en la carpeta templates en la raíz
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [

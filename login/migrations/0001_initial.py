@@ -3,24 +3,50 @@ from django.contrib.auth.models import Group, User
 
 def create_roles_and_users(apps, schema_editor):
     # Crear roles (grupos)
-    admin_group, created = Group.objects.get_or_create(name='Administrador')
-    user_group, created = Group.objects.get_or_create(name='Usuario Regular')
-    moderator_group, created = Group.objects.get_or_create(name='Moderador')
+  
+    user_group, _ = Group.objects.get_or_create(name='Usuario Regular')
+    moderator_group, _ = Group.objects.get_or_create(name='Moderador')
 
-    # Crear tres usuarios de prueba con diferentes roles
-    admin_user = User.objects.create_user(username='admin_user', password='admin_password')
-    regular_user = User.objects.create_user(username='regular_user', password='regular_password')
-    moderator_user = User.objects.create_user(username='moderator_user', password='moderator_password')
+    # Eliminar usuario administrador existente, si existe
+    try:
+        admin_user = User.objects.get(username='admin_user')
+        admin_user.delete()
+    except User.DoesNotExist:
+        pass
 
-    # Asignar roles a los usuarios
-    admin_group.user_set.add(admin_user)
-    user_group.user_set.add(regular_user)
+    # Crear un nuevo superusuario
+    superuser = User.objects.create_superuser(
+        username='super_admin',
+        password='super_password',
+        email='super_admin@example.com'
+    )
+
+    # Asignar superusuario al grupo de administrador
+    moderator_group.user_set.add(superuser)
+
+    # Crear 10 usuarios regulares y asignarlos al grupo
+    for i in range(1, 11):
+        regular_user = User.objects.create_user(
+            username=f'regular_user_{i}',
+            password=f'regular_password_{i}'
+        )
+        user_group.user_set.add(regular_user)
+
+    # (Opcional) Mantener el usuario moderador
+    moderator_user, created = User.objects.get_or_create(
+        username='moderator_user',
+        defaults={'password': 'moderator_password'}
+    )
+    if created:
+        moderator_user.set_password('moderator_password')  # Asegura el hashing
+        moderator_user.save()
+
     moderator_group.user_set.add(moderator_user)
 
 class Migration(migrations.Migration):
 
     dependencies = [
-        # Si es la primera migración, no debe depender de ninguna otra
+          # Dependencia de la migración '0001_initial' de la app 'login'
     ]
 
     operations = [

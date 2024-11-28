@@ -1,137 +1,37 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista de Clientes</title>
-    <style>
-        /* Estilos generales */
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            color: #333;
-        }
+{% extends 'base.html' %}
 
-        .container {
-            width: 100%;
-            max-width: 900px;
-            padding: 20px;
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            text-align: center;
-            color: #4CAF50;
-        }
-
-        .actions {
-            display: block;
-            margin: 20px 0;
-            text-align: center;
-        }
-
-        .actions a {
-            padding: 10px 20px;
-            text-decoration: none;
-            background-color: #4CAF50;
-            color: white;
-            border-radius: 4px;
-            margin: 5px;
-        }
-
-        .actions a:hover {
-            background-color: #45a049;
-        }
-
-        /* Estilos de la tabla */
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th, td {
-            padding: 10px;
-            text-align: left;
-            border: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #4CAF50;
-            color: white;
-        }
-
-        td {
-            background-color: #f9f9f9;
-        }
-
-        /* Estilo para tablas responsivas */
-        @media screen and (max-width: 768px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-
-            th {
-                text-align: right;
-                padding-top: 20px;
-            }
-
-            td {
-                text-align: right;
-                padding: 10px;
-                position: relative;
-                border: none;
-            }
-
-            td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                font-weight: bold;
-            }
-
-            td:last-child {
-                text-align: center;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Lista de Clientes</h1>
-        <div class="actions">
-            <a href="{% url 'create_client' %}">Crear Cliente</a>
+{% block content %}
+    <h1>Lista de Clientes</h1>
+    <a href="{% url 'clients:create_client' %}">Crear Cliente</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Nombres</th>
+                <th>Teléfono</th>
+                <th>Abogado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in clientes %}
+            <tr>
+                <td>{{ cliente.nombres }}</td>
+                <td>{{ cliente.telefono }}</td>
+                <td>{{ cliente.abogado.username }}</td>  <!-- Mostrando el nombre de usuario del abogado -->
+                <td>
+                    <a href="{% url 'clients:update_client' cliente.id %}">Actualizar</a>
+                    <a href="{% url 'clients:erase_client' cliente.id %}">Borrar</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <!-- Mostrar los mensajes de error u otros -->
+    {% if messages %}
+        <div class="messages">
+            {% for message in messages %}
+                <div class="alert alert-danger">{{ message }}</div>
+            {% endfor %}
         </div>
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Nombres</th>
-                    <th>Teléfono</th>
-                    <th>Acciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for cliente in clientes %}
-                <tr>
-                    <td>{{ cliente.nombres }}</td>
-                    <td>{{ cliente.telefono }}</td>
-                    <td>
-                        <a href="{% url 'update_client' cliente.id %}">Actualizar</a>
-                        <a href="{% url 'erase_client' cliente.id %}">Borrar</a>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </div>
-</body>
-</html>
+    {% endif %}
+{% endblock %}
