@@ -1,6 +1,16 @@
 {% extends 'base.html' %}
 
 {% block content %}
+
+<!-- Formulario de búsqueda -->
+<!-- Formulario de búsqueda -->
+   <form method="GET">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+
+
 <h1>Pagos de tus clientes</h1>
 <a href="{% url 'payments:crear_pago' %}" class="btn btn-primary">Crear Pago</a>
 <br><br>
@@ -12,6 +22,7 @@
             <th>Fecha del Pago</th>
             <th>Tipo de Venta</th>
             <th>Canal de Pago</th>
+            <th>Acciones</th> <!-- Nueva columna -->
         </tr>
     </thead>
     <tbody>
@@ -22,6 +33,13 @@
             <td>{{ pago.fecha_pago }}</td>
             <td>{{ pago.get_tipo_venta_display }}</td>
             <td>{{ pago.get_canal_pago_display }}</td>
+            <td>
+                <a href="{% url 'payments:editar_pago' pago.id %}" class="btn btn-warning btn-sm">Editar</a>
+                <form action="{% url 'payments:borrar_pago' pago.id %}" method="post" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de borrar este pago?');">Borrar</button>
+                </form>
+            </td>
         </tr>
         {% endfor %}
     </tbody>

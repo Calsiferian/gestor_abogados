@@ -1,6 +1,13 @@
 {% extends 'base.html' %}
 
 {% block content %}
+    <!-- Formulario de búsqueda -->
+    <form method="GET">
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+
+
     <h1>Lista de Clientes</h1>
     <a href="{% url 'clients:create_client' %}">Crear Cliente</a>
     <table border="1">

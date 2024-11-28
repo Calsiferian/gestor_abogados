@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Cliente
 from .forms import ClienteForm
 from django.contrib import messages
+from .forms import ClienteSearchForm
 
 # Vista para listar clientes
 @login_required
@@ -15,7 +16,19 @@ def listar_clientes(request):
         # Si es abogado, obtener solo los clientes asociados a él
         clientes = Cliente.objects.filter(abogado=request.user)
 
-    return render(request, 'listar_clientes.html', {'clientes': clientes})
+    # Crear el formulario de búsqueda y procesarlo si se recibe un valor de búsqueda
+    form = ClienteSearchForm(request.GET)
+    if form.is_valid():
+        nombre = form.cleaned_data.get('nombre')
+        if nombre:
+            # Filtrar los clientes según el nombre
+            clientes = clientes.filter(nombres__icontains=nombre)
+
+    # Pasar los clientes y el formulario al contexto
+    return render(request, 'listar_clientes.html', {
+        'clientes': clientes,
+        'form': form
+    })
 
 # Vista para crear un cliente
 @login_required
