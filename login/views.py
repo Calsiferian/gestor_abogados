@@ -30,7 +30,7 @@ def login_view(request):
                     return redirect('admin:index')
                 
                 # Si no es superusuario, redirige a la página de inicio u otra página configurada
-                return redirect('g')  # 'g' es el nombre de la URL de la página de inicio
+                return redirect('/clients')  #  es el nombre de la URL de la página de inicio
                 
             else:
                 # Si el usuario no fue encontrado (credenciales incorrectas), añade un error al formulario
