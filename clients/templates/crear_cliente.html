@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% if actualizar %}Actualizar{% else %}Crear{% endif %} Cliente</title>
+</head>
+<body>
+    <h1>{% if actualizar %}Actualizar{% else %}Crear{% endif %} Cliente</h1>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
+    </form>
+    <a href="{% url 'list_clients' %}">Volver</a>
+</body>
+</html>
