@@ -22,4 +22,5 @@ urlpatterns = [
     path('', include('login.urls')),  # Rutas de la app saludo
     path('clients/', include('clients.urls')),  # Incluir las URLs de la aplicación "clientes"
     path('pagos/', include('payments.urls')), 
+    path('tariffing/', include('tariffing.urls')),  # Agregar la ruta a tariffing
 ]

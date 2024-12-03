@@ -46,13 +46,12 @@ class PaymentSearchForm(forms.Form):
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)  # Llamar al constructor base de Form
         # Puedes usar self.user para personalizar el formulario según el usuario
-        print(self.user.groups.all()) 
-
+        
         if self.user:
-            print(self.user)
+            
             # Si el usuario es moderador, mostramos todos los abogados
             if self.user.groups.filter(name='Moderador').exists():
-                print("entro")
+               
                 self.fields['abogado'].queryset = User.objects.filter(groups__name='Usuario Regular')
             # Si el usuario es un abogado, mostramos solo el mismo
             elif self.user.groups.filter(name='Usuario Regular').exists():
