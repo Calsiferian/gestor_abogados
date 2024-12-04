@@ -1,22 +1,27 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <!-- Formulario de búsqueda -->
+   
+
+
+    <h1>Lista de Clientes</h1>
+    <a href="{% url 'clients:create_client' %}" class="btn btn-primary">Crear Cliente</a>
+    <br><br>
+     <!-- Formulario de búsqueda -->
     <form method="GET">
     {{ form.as_p }}
     <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
 
-
-    <h1>Lista de Clientes</h1>
-    <a href="{% url 'clients:create_client' %}">Crear Cliente</a>
     <table border="1">
         <thead>
             <tr>
                 <th>Nombres</th>
                 <th>Teléfono</th>
-                <th>Abogado</th>
                 <th>Acciones</th>
+                {% if is_moderator %}
+                <th>Abogado Asociado</th>  <!-- Columna para moderadores -->
+                {% endif %}
             </tr>
         </thead>
         <tbody>
@@ -24,11 +29,13 @@
             <tr>
                 <td>{{ cliente.nombres }}</td>
                 <td>{{ cliente.telefono }}</td>
-                <td>{{ cliente.abogado.username }}</td>  <!-- Mostrando el nombre de usuario del abogado -->
                 <td>
-                    <a href="{% url 'clients:update_client' cliente.id %}">Actualizar</a>
-                    <a href="{% url 'clients:erase_client' cliente.id %}">Borrar</a>
+                    <a href="{% url 'clients:update_client' cliente.id %}" class="btn btn-warning btn-sm">Actualizar</a>
+                    <a href="{% url 'clients:erase_client' cliente.id %}" class="btn btn-danger btn-sm">Borrar</a>
                 </td>
+                {% if is_moderator %}
+                <td>{{ cliente.abogado.username }}</td>    <!-- Mostrando el nombre de usuario del abogado -->
+               {% endif %}
             </tr>
             {% endfor %}
         </tbody>
