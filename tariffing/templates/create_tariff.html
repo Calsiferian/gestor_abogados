@@ -1,16 +1,123 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Consultar Pagos</h1>
-    
-    <!-- Formulario de filtro -->
-    <form method="GET">
-        {{ form.as_p }}
-        <button type="submit" class="btn btn-primary">Buscar</button>
-    </form>
+<link rel="stylesheet" href="{% static 'create_tariff.css' %}">
+<!--Titulo vista y formlario de busqueda-->
+<div class="container-fluid divbody">
+    <div class="row">
+        <div class="col-1 pruebat1"></div>
+        <div class="col-10">  
+            <div class="row">
+                <div class="col-12 divFormularioTarificador">
+                    <p class="tituloClientes">Tarificador</p>
+                </div>
+            </div>                           
+        </div>
+        <div class="col-1 pruebat3"></div>
+    </div>
+    <div class="row">
+        <div class="col-1 pruebat1"></div>
+        <div class="col-10">  
+            <div class="row">
+                <div class="col-12 divFormularioTarificador">
+                    <form action="" class="formFiltrarNombreNumero">
+                        <label for="fecha_inicio" class="labelFormulario"> Fecha Inicio
+                            {{ form.fecha_inicio }}
+                        </label> 
+                        <label for="fecha_fin" class="labelFormulario"> Fecha Fin
+                            {{ form.fecha_fin }}
+                        </label> 
+                        <label for="canal" class="labelFormulario"> Canal
+                            {{ form.canal }}
+                        </label> 
+                        <label for="abogado" class="labelFormulario"> Abogado
+                            {{ form.abogado }}
+                        </label> 
+                        <button type="submit" class="botonEnviarFormularioFiltrar">Buscar</button>
+                    </form>
+                        
+                    <a href="{% url 'payments:crear_pago' %}">
+                        <button class="botonCrearCliente">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Crear Pago
+                        </button>
+                    </a>
+                </div>
+            </div>                           
+        </div>
+        <div class="col-1 pruebat3"></div>
+    </div>
+</div>    
+    <!--Titulos tabla de tarificador-->
+    <div class="row testteste mt-3">
+        <div class="col-11">  
+            <div class="row tablaTitulosClientes">
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Cliente</p>
+                </div>
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Valor</p>
+                </div>
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Fecha</p>
+                </div>
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Tipo</p>
+                </div>
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Canal</p>
+                </div>
+                <div class="col-2 divtitulosTablasClientes">
+                    <p class="titulosTabla">Acción</p>
+                </div>
+            </div>                        
+        </div>
+    </div>
 
-    <h2>Resultados de los Pagos</h2>
+    <!--Contenido tabla pagos--> 
+    {% for pago in pagos %}
+    <div class="row testteste">
+        <div class="col-11">  
+            <div class="row tablaDatosClientes">
+                <div class="col-2 divdatosClientesT">
+                    <p class="datosCliente">{{ pago.cliente.nombres }}</p>
+                </div>
+                <div class="col-2 divdatosClientesT">
+                    <p class="datosCliente">{{ pago.valor_pago }}</p>
+                </div>
+                <div class="col-2 divdatosClientesT">
+                    <p class="datosCliente">{{ pago.fecha_pago }}</p>
+                </div>
+                <div class="col-2 divdatosClientesT">
+                    <p class="datosCliente">{{ pago.get_tipo_venta_display }}</p>
+                </div>
+                <div class="col-2 divdatosClientesT">
+                    <p class="datosCliente">{{ pago.get_canal_pago_display }}</p>
+                </div>
+                
+                <div class="col-2 divtitulosTablasClientes">
+                    <a href="{% url 'payments:editar_pago' pago.id %}">
+                        <button class="botonEditar">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Editar
+                        </button>
+                    </a>
+                    <form action="{% url 'payments:borrar_pago' pago.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
+                            <i class="fa-solid fa-trash"></i>
+                            Borrar
+                        </button>
+                    </form>
+                </div>
+            </div>                        
+        </div>
+    </div>
+    {% endfor %}
 
+<!--Probar funcionamiento de tabla con contenido y posteriormente borrar-->
+<!--
     <table class="table">
         <thead>
             <tr>
@@ -41,5 +148,5 @@
             {% endfor %}
         </tbody>
     </table>
-
+-->
 {% endblock %}

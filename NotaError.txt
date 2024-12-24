@@ -1,0 +1,48 @@
+Realizado
+App Login
+- El formulario creado en forms.py no funcionaba, ya que al crear el renderizado de la pagina, se estaba enviando el formulario predeterminado por python (O Django) en lugar de importar el creado en forms.py y renderizar ese.
+
+- Fue modificado el contenido de forms.py y views.py de todas las app
+
+Por realizar
+- Modificar mensajes de error 
+Mensaje de error de Login, actualmente dice "__all__ Please enter a correct username and password. Note that both fields may be case-sensitive." y luego "Datos no validos" creo que es mejor solo dejar el ultimo.
+Definir como se crearan estos errores, ya que en task_list.html se crean asi
+            {% if is_moderator %}
+            <td>{{ cliente.abogado.username }}</td>  
+            {% endif %}
+            <div class="box">
+                <p class="tituloTarea">Nombre Cliente</p>
+                <p class="textoTarea">{{ task.cliente }}</p>
+            </div>
+            <div class="box">
+                <p class="tituloTarea">Fecha tarea</p>
+                <p class="textoTarea">{{ task.fecha_tarea }}    </p>
+            </div>
+        </div>
+        {% empty %}
+        <tr>
+            <td colspan="4">No se encontraron tareas.</td>
+        </tr>       
+        {% endfor %} 
+Mientras que en el Login se hace asi 
+        <!--Mensajes de error-->
+        {% if form.errors %}
+        
+            {{ form.errors }}
+        
+        {% endif %}
+
+
+- Creo que los abogados no deberian tener la opcion para ver el boton de eliminar cliente si no la pueden usar, confirmar para eliminar ese boton
+
+- El perfil de moderador al crear un cliente o tarea debe poderse agregar a un abogado, en este momento se crean pero para si mismo, agregar pago se haria automaticamente al abogado que creo X cliente
+
+- Falta que en tareas se dividan en:
+Tareas para ese dia
+Tareas faltantes 
+Tareas pasadas
+
+- Añadir a "Pagos" la opcion de añadir el numero de comprobante, ya esta creado el espacio en html para el listado
+
+- El formulario de crear pago no funcionaba

@@ -1,35 +1,84 @@
-<!-- gestor_abogados/templates/navbar.html -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Gestor Abogados</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          {% if is_moderator %}
-          <li class="nav-item">
-          <a class="nav-link" href="{% url 'tariffing:consultar_tarifas' %}">Tarifario</a>
-          </li>
-          {% endif %}
+{% load static %}
+<link rel="stylesheet" href="{% static 'navbar.css' %}">
+<link rel="stylesheet" href="{% static 'bootstrap.min.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'schedule:task_list' %}">Tareas</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'payments:listar_pagos' %}">Pagos</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="{% url 'clients:list_clients' %}">Clientes</a>
-          </li>
-          <li class="nav-item">
-            <form method="POST" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <button type="submit">Cerrar sesión</button>
-          </form>
-          </li>
-        </ul>
+<!--Inicio Navbar-->
+<header class="navbar navbar-expand-lg navbarPrincipal">
+  <!-- Colocar logo de plataforma
+  <a class="navbar-brand textoNavbar" href="#">Inicio</a>
+  -->
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav">
+      <li class="nav-item dropdown divInputIcon">
+          <a class="nav-link dropdown-toggle textoNavbar" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Crear
+          </a>
+          <div class="dropdown-menu divdesplegableNavbar" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item elementoDesplegableNavbar textoNavbar" href="{% url 'clients:create_client' %}">Crear cliente</a>
+            <a class="dropdown-item elementoDesplegableNavbar textoNavbar" href="{% url 'payments:crear_pago' %}">Crear pago</a>
+            <a class="dropdown-item elementoDesplegableNavbar textoNavbar" href="{% url 'schedule:task_create' %}">Crear tarea</a>
+          </div>
+        </li>
+
+      {% if is_moderator %}
+      <!--Mostrar tarifario en caso de ser necesario-->
+      <div class="divInputIcon">
+        <i class="fa-solid fa-percent"></i>
+        <li class="nav-item">
+            <a class="nav-link textoNavbar" href="{% url 'tariffing:consultar_tarifas' %}">Tarificador</a>
+        </li>
       </div>
-    </div>
-  </nav>
-  
+      {% endif %}
+      
+      
+      <div class="divInputIcon">
+          <i class="fa-regular fa-address-card"></i>
+          <li class="nav-item">
+              <a class="nav-link textoNavbar" href="{% url 'clients:list_clients' %}">Clientes</a>
+          </li>
+      </div>
+      <div class="divInputIcon">
+          <i class="fa-regular fa-calendar-check"></i>
+          <li class="nav-item">
+              <a class="nav-link textoNavbar" href="{% url 'schedule:task_list' %}">Tareas</a>
+          </li>
+      </div>
+      <div class="divInputIcon">
+          <i class="fa-regular fa-credit-card"></i>
+          <li class="nav-item">
+              <a class="nav-link textoNavbar" href="{% url 'payments:listar_pagos' %}">Pagos</a>
+          </li>
+      </div>
+      <div class="divInputIcon">
+          <i class="fa-regular fa-user"></i>
+          <li class="nav-item">
+              <a class="nav-link textoNavbar" href="#">Perfil</a>
+          </li>
+      </div>
+      <div class="divInputIcon">    
+        <i class="fa-solid fa-xmark"></i>
+          <li class="nav-item">
+            
+              <form method="POST" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" class="nav-link textoNavbar divInputIcon">Cerrar</button>
+              </form>
+          </li>
+      </div>
+      <!--
+      <li class="nav-item">
+        <a class="nav-link textoNavbar" href="#">Cerrar</a>
+      </li>
+      -->
+    </ul>
+  </div>
+</header>
+<!--Fin Navbar-->
+<script src="{% static 'bootstrap.min.js' %}"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"></script>

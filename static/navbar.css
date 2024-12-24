@@ -1,0 +1,71 @@
+/*Inicio Navbar*/
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('/static/Raleway-VariableFont_wght.ttf');
+    font-weight: normal;
+}
+
+.navbarPrincipal{
+    background-color: #202634;  
+}
+.textoNavbar{
+    font-family: "Poppins";
+    color: white !important;
+}
+.divInputIcon {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #202634;
+    border-radius: 6px;
+    padding: 0em 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.divInputIcon:hover {
+    background-color: #495779;
+}
+.divdesplegableNavbar {
+    background-color: #202634 !important;
+    border-radius: 6px !important;
+    padding: 0.5em !important;
+    margin-top: 3em !important;
+    transition: background-color 0.3s ease-in-out; 
+}
+.dropdown-item{
+    background-color: #202634 !important;
+    transition: background-color 0.3s ease-in-out !important; 
+    border-radius: 6px !important;
+}
+.dropdown-item:hover {
+    background-color: #495779 !important;
+}
+
+.fa-user, .fa-xmark, .fa-credit-card, .fa-calendar-check, .fa-address-card, .fa-percent, .fa-arrow-right{
+    color: white !important;
+    font-size: 1em !important;
+    transition: color 0.3s ease-in-out; 
+    margin-right: 0.5em;
+    margin-left: 0.5em;
+}
+
+/*Los siguientes estilos se aplican en todas las pantallas excepto en celular */
+@media (min-width: 575px) {
+    .dropdown {
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+    .navbar-expand-lg .navbar-collapse{
+        display: flex!important;
+        flex-basis: auto;
+        justify-content: space-around !important;
+    }
+    
+}
+/*Fin Navbar*/

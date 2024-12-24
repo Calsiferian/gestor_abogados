@@ -1,59 +1,89 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'task_list2.css' %}">
+<!--Titulo vista y formlario de busqueda-->
+<div class="container-fluid divbody">
+    <div class="row">
+        <div class="col-1 pruebat1"></div>
+        <div class="col-10">  
+            <div class="row">
+                <div class="col-3 divTituloTabla">
+                    <p class="tituloClientes">Tareas registradas</p>
+                </div>
+                <div class="col-9 pruebat2">
+                    <form action="" class="formFiltrarNombreNumero">
+                        <!-- Probar con labels para los inputs -->
+                         <!-- Probar con labels para los inputs 
+                        <label for="id_cliente_nombre" class="labeltest"> Nombre cliente</label> 
+                        -->
+                        {{ form.cliente_nombre }}
+                        
+                        {{ form.abogado }}
+                        <button type="submit" class="botonEnviarFormularioFiltrar">Buscar</button>
+                    </form>
+                        
+                    <a href="{% url 'schedule:task_create' %}">
+                        <button class="botonCrearCliente">
+                            <i class="fa-solid fa-user-plus"></i>
+                            Crear Tarea
+                        </button>
+                    </a>
+                </div>
+            </div>                           
+        </div>
+        <div class="col-1 pruebat3"></div>
+    </div>
+</div>    
 
-<h1>Lista de Tareas</h1>
-
-<!-- Botón para crear una nueva tarea -->
-<a href="{% url 'schedule:task_create' %}" class="btn btn-success">Crear Nueva Tarea</a>
-
-<br><br>
-
-<!-- Formulario de búsqueda -->
-<form method="GET">
-    {% csrf_token %}
-    {{ form.as_p }}  <!-- Mostrar todos los campos del formulario -->
-    <button type="submit" class="btn btn-primary">Buscar</button>
-</form>
-
-<br>
-
-<table border="1">
-    <thead>
-        <tr>
-            <th>Cliente</th>
-            <th>Tarea</th>
-            <th>Fecha</th>
-            <th>Acciones</th>
-            {% if is_moderator %}
-                <th>Abogado Asociado</th>  <!-- Columna para moderadores -->
-            {% endif %}
-        </tr>
-    </thead>
-    <tbody>
+<!--Mostrar tareas registradas-->
+<div class="container-fluid">
+    <div class="row">
         {% for task in tasks %}
-        <tr>
-            <td>{{ task.cliente }}</td>
-            <td>{{ task.tarea }}</td>
-            <td>{{ task.fecha_tarea }}</td>
-            <td>
-                <a href="{% url 'schedule:task_edit' task.id %}" class="btn btn-warning btn-sm">Editar</a>
-                <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
-                {% csrf_token %}
-                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">Borrar</button>
-                </form>
-
-            </td>
+        <div class="col-4">
+            <div class="box">
+                <div class="divtituloTarea">
+                    <p class="tituloTarea">Tarea a realizar</p>
+                    <a href="{% url 'schedule:task_edit' task.id %}">
+                        <button class="botonEditar" title="Editar Nota">
+                            <i class="fa-regular fa-pen-to-square"></i>
+                            Editar
+                        </button>
+                    </a>
+                    
+                    <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
+                            <i class="fa-solid fa-trash"></i>
+                            Borrar
+                        </button>
+                    </form>
+                </div>
+        
+                <div class="divtextoTarea">
+                    <p class="textoTarea">{{ task.tarea }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2">
             {% if is_moderator %}
-                <td>{{ task.cliente.abogado.username }}</td>  <!-- Abogado asociado -->
+            <td>{{ cliente.abogado.username }}</td>    <!--  FALTA Mostrando el nombre de usuario del abogado -->
             {% endif %}
-        </tr>
+            <div class="box">
+                <p class="tituloTarea">Nombre Cliente</p>
+                <p class="textoTarea">{{ task.cliente }}</p>
+            </div>
+            <div class="box">
+                <p class="tituloTarea">Fecha tarea</p>
+                <p class="textoTarea">{{ task.fecha_tarea }}    </p>
+            </div>
+        </div>
         {% empty %}
         <tr>
             <td colspan="4">No se encontraron tareas.</td>
-        </tr>
-        {% endfor %}
-    </tbody>
-</table>
-
+        </tr>       
+        {% endfor %} 
+    </div>
+</div>
 {% endblock %}

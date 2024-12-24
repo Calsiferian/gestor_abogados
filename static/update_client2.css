@@ -1,0 +1,110 @@
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('/static/Raleway-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.mitad{
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+}
+
+.tituloFormulario{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin: 0.5em;
+    text-decoration: none;
+}
+.formularioActualizar{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #495779;
+    border-radius: 6px;
+}
+.inputActualizarCliente{
+    background-color: red;
+    font-family: "Poppins";
+}
+.inputActualizarCliente{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 1em;
+    margin: 1em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    width: 80%;
+    transition: background-color 0.3s ease-in-out; 
+}
+.inputActualizarCliente:hover{
+    background-color: #0f3b83;
+}
+.inputActualizarCliente::placeholder{
+    color: white;
+}.inputActualizarCliente:focus {
+    outline: none; 
+}
+
+.labelInputs{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-right: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+
+.divInputIcono {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    border-radius: 6px;
+    padding: 0em 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.fa-user-pen, .fa-phone{
+    color: white;
+    font-size: 1.5em;
+}
+
+.botonActualizarcliente {
+    display: flex;                /* Activa el modo flexbox */
+    align-items: center;          /* Alinea verticalmente los elementos en el centro */
+    justify-content: center;      /* Opcional: centra el contenido horizontalmente */
+    gap: 0.5em;                   /* Espaciado entre el icono y el texto */
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 1em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3fea4d;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;           /* Ajusta el espacio interior del botón */
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.botonActualizarcliente i {
+    margin: 0;                    /* Elimina cualquier margen adicional del ícono */
+}
+
+.botonActualizarcliente:hover{
+    background-color: #086810;
+}

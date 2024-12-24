@@ -13,8 +13,28 @@ class PaymentForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')  # Extraemos el usuario que inició sesión (pasado desde la vista)
         super().__init__(*args, **kwargs)  # Inicializamos el formulario con el método de la clase base
+
         # Filtramos el campo 'cliente' para que solo muestre los clientes asociados al abogado actual
         self.fields['cliente'].queryset = Cliente.objects.filter(abogado=user)
+
+        # Agregamos la clase CSS y los placeholders a los inputs
+        self.fields['cliente'].widget.attrs.update({
+            'class': 'inputCrearPago'
+        })
+        self.fields['valor_pago'].widget.attrs.update({
+            'class': 'inputCrearPago',
+            'placeholder': 'Ingrese el valor del pago',
+        })
+        self.fields['fecha_pago'].widget.attrs.update({
+            'class': 'inputCrearPago',
+            'placeholder': 'AAAA-MM-DD',
+        })
+        self.fields['tipo_venta'].widget.attrs.update({
+            'class': 'inputCrearPago'
+        })
+        self.fields['canal_pago'].widget.attrs.update({
+            'class': 'inputCrearPago'
+        })
 
     # Validación para asegurarnos de que el valor_pago sea un número entero positivo
     def clean_valor_pago(self):
@@ -35,24 +55,37 @@ class PaymentForm(forms.ModelForm):
             except ValueError:
                 raise ValidationError("La fecha debe estar en formato AAAA-MM-DD.")
         return fecha_pago
+
     
 
 class PaymentSearchForm(forms.Form):
-    abogado = forms.ModelChoiceField(queryset=User.objects.none(), required=False)
-    cliente_nombre = forms.CharField(max_length=100, required=False)
+    abogado = forms.ModelChoiceField(
+        queryset=User.objects.none(), 
+        required=False, 
+        widget=forms.Select(attrs={
+            'class': 'inputBuscarPago'
+        })
+    )
+    cliente_nombre = forms.CharField(
+        max_length=100, 
+        required=False, 
+        widget=forms.TextInput(attrs={
+            'class': 'inputBuscarPago',
+            'placeholder': 'Buscar por nombre...'  # Placeholder agregado
+        })
+    )
 
     def __init__(self, *args, **kwargs):
         # Extraer el usuario de kwargs (si está presente)
         self.user = kwargs.pop('user', None)
         super().__init__(*args, **kwargs)  # Llamar al constructor base de Form
-        # Puedes usar self.user para personalizar el formulario según el usuario
         
+        # Personalización del queryset según el tipo de usuario
         if self.user:
-            
             # Si el usuario es moderador, mostramos todos los abogados
             if self.user.groups.filter(name='Moderador').exists():
-               
                 self.fields['abogado'].queryset = User.objects.filter(groups__name='Usuario Regular')
-            # Si el usuario es un abogado, mostramos solo el mismo
+            # Si el usuario es un abogado, mostramos solo al mismo
             elif self.user.groups.filter(name='Usuario Regular').exists():
-                 self.fields['abogado'].queryset = User.objects.filter(id=self.user.id)
+                self.fields['abogado'].queryset = User.objects.filter(id=self.user.id)
+

@@ -1,11 +1,35 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-    <h1>Actualizar Cliente</h1>
-    <form method="POST">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Actualizar</button>
-    </form>
-    <a href="{% url 'clients:list_clients' %}">Volver a la lista de clientes</a>
+<link rel="stylesheet" href="{% static 'update_client2.css' %}">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mitad">
+            <p class="tituloFormulario">Actualizar cliente</p>
+            <form method="POST" class="formularioActualizar mt-3">
+                {% csrf_token %}
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Nombre</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.nombres}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Teléfono</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-phone"></i>
+                        {{ form.telefono}}
+                    </div>
+                </div>
+                <button type="submit" class="botonActualizarcliente mb-4">Actualizar</button>
+            </form>
+            <a href="{% url 'clients:list_clients' %}" class="nombreUser mt-4">Volver a la lista de clientes</a>
+        </div>
+        <div class="col-3"></div>
+    </div>
+<div>
+
 {% endblock %}

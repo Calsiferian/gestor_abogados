@@ -1,11 +1,56 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-<h1>Crear Nuevo Pago</h1>
-<form method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit" class="btn btn-success">Guardar</button>
-    <a href="{% url 'payments:listar_pagos' %}" class="btn btn-secondary">Cancelar</a>
-</form>
+<link rel="stylesheet" href="{% static 'crear_pago.css' %}">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mitad">
+            <p class="tituloFormulario">Crear pago</p>
+            <form method="POST" class="formularioActualizar mt-3">
+                {% csrf_token %}
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Cliente</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.cliente}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Valor del pago</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.valor_pago}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Fecha de pago</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.fecha_pago}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Tipo de venta</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.tipo_venta}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Canal de pago</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.canal_pago}}
+                    </div>
+                </div>
+                <button type="submit" class="botonActualizarcliente mb-4">Crear</button>
+            </form>
+            <a href="{% url 'payments:listar_pagos' %}" class="nombreUser mt-4">Volver a pagos</a>
+        </div>
+        <div class="col-3"></div>
+    </div>
+<div>
 {% endblock %}

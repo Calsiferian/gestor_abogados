@@ -1,11 +1,43 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
-        <h1>{% if actualizar %}Actualizar{% else %}Crear{% endif %} Cliente</h1>
-        <form method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
-        </form>
-        <a href="{% url 'clients:list_clients' %}">Volver</a>
+<link rel="stylesheet" href="{% static 'update_client2.css' %}">
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mitad">
+            <p class="tituloFormulario">{% if actualizar %}Actualizar{% else %}Crear{% endif %} Cliente</p>
+            <form method="POST" class="formularioActualizar mt-3">
+                {% csrf_token %}
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Cliente</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.nombres}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Teléfono</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-phone"></i>
+                        {{ form.telefono}}
+                    </div>
+                </div>
+                <button type="submit" class="botonActualizarcliente mb-4">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
+            </form>
+            <a href="{% url 'clients:list_clients' %}" class="nombreUser mt-4">Volver a clientes</a>
+        </div>
+        <div class="col-3"></div>
+    </div>
+<div>
+    <script>
+        const inputIngresaNombre = document.getElementsByClassName("inputActualizarCliente")[0];
+        const inputIngresaTelefono = document.getElementsByClassName("inputActualizarCliente")[1];
+
+        inputIngresaNombre.setAttribute('placeholder', 'Ingrese el nombre');
+        inputIngresaTelefono.setAttribute('placeholder', 'Ingrese el teléfono');
+</script>
 {% endblock %}

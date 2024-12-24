@@ -1,6 +1,50 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
+<link rel="stylesheet" href="{% static 'crearTarea2.css' %}">
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-3"></div>
+        <div class="col-6 mitad">
+            <p class="tituloFormulario">{% if form.instance.pk %}Editar tarea{% else %}Crear tarea{% endif %}</p>
+            <form method="POST" class="formularioActualizar mt-3">
+                {% csrf_token %}
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Cliente</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.cliente}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Tarea</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-phone"></i>
+                        {{ form.tarea}}
+                    </div>
+                </div>
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs">Fecha</label>                            
+                    <div class="divInputIcono">
+                        {{ form.fecha_tarea}}
+                    </div>
+                </div>
+                <button type="submit" class="botonActualizarcliente mb-4">{% if actualizar %}Actualizar{% else %}Crear{% endif %}</button>
+            </form>
+            <a href="{% url 'schedule:task_list' %}" class="nombreUser mt-4">Volver a tareas</a>
+        </div>
+        <div class="col-3"></div>
+    </div>
+<div>
+    <script>
+        const inputIngresaNombre = document.getElementsByClassName("inputActualizarCliente")[0];
+
+        inputIngresaNombre.setAttribute('placeholder', 'Ingrese la tarea');
+</script>
+
+<!--
     <h1>{% if form.instance.pk %}Edit Task{% else %}Create Task{% endif %}</h1>
     <form method="post">
         {% csrf_token %}
@@ -8,7 +52,7 @@
         <button type="submit">Save</button>
     </form>
     <a href="{% url 'schedule:task_list' %}">Back to Task List</a>
+-->
 </body>
 </html>
-
 {% endblock %}

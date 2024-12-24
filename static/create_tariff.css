@@ -1,0 +1,220 @@
+.test{
+    background-color: red;
+    padding: 5em;
+}
+.tituloClientes{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    text-decoration: none;
+}
+.inputBuscarPago{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    width: 80%;
+    transition: background-color 0.3s ease-in-out; 
+}
+.inputBuscarPago:hover{
+    background-color: #0f3b83;
+}
+.inputBuscarPago::placeholder{
+    color: white;
+}
+.selecNombreNumero:focus, .inputBuscarPago:focus {
+    outline: none; 
+}
+.formFiltrarNombreNumero{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+} 
+.botonEnviarFormularioFiltrar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEnviarFormularioFiltrar:hover{
+    background-color: #0f3b83;
+}
+
+a {
+    text-decoration: none;
+}
+.botonCrearCliente {
+    display: flex;                /* Activa el modo flexbox */
+    align-items: center;          /* Alinea verticalmente los elementos en el centro */
+    justify-content: center;      /* Opcional: centra el contenido horizontalmente */
+    gap: 0.5em;                   /* Espaciado entre el icono y el texto */
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3fea4d;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;           /* Ajusta el espacio interior del botón */
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.botonCrearCliente i {
+    margin: 0;                    /* Elimina cualquier margen adicional del ícono */
+}
+
+.botonCrearCliente:hover{
+    background-color: #086810;
+}
+
+
+
+
+
+
+/*Titulos tabla datos clientes*/
+.tablaTitulosClientes{
+    display: flex;
+    justify-content: center;
+    background-color: #495779;
+    border-radius: 8px 8px 0px 0px;
+    padding-top: 1em;
+}
+.divtitulosTablasClientes {
+    display: flex;
+    justify-content: center;
+    align-content: stretch;
+    align-items: center;
+}
+.titulosTabla{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.2em;
+    margin-right: 1em;
+    margin-top: 1em;
+    text-align: center;
+}
+.tablaDatosClientes {
+    display: flex;
+    justify-content: center;
+    background-color: #495779;
+    border-radius: 0px;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    position: relative;
+}
+
+.tablaDatosClientes::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 5%; /* Comienza desde el 10% del ancho */
+    width: 90%; /* El ancho del borde es el 80% del contenedor */
+    height: 1px; /* Ajusta el grosor del borde */
+    background-color: rgba(255, 255, 255, 0.438); /* Color del borde */
+}
+
+.divdatosClientes{
+    display: flex;
+    justify-content: center;
+}
+
+    .divdatosClientesT{
+        display: flex;
+        justify-content: center;
+        border-style: solid;
+        border-width: 0px 1px 0px 0px;
+        border-color: rgba(255, 255, 255, 0.438); 
+    }
+    
+
+
+.datosCliente{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-right: 1em;
+    margin-top: 1em;
+}
+.botonEditar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEditar:hover{
+    background-color: #0f3b83;
+}
+.botonEliminar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #ea3f3f;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEliminar:hover{
+    background-color: #830f0f;
+}
+
+.fa-user-plus, .fa-pen-to-square, .fa-trash {
+    color: white !important;
+    font-size: 0.8em !important;
+}
+
+
+
+.testteste {
+    display: flex;
+    justify-content: center;
+}
+
+.labelFormulario {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 1em;
+    text-decoration: none;
+}
+.divFormularioTarificador {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #293042;
+    border-radius: 6px;
+    padding: 0.5em;
+}

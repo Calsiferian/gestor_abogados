@@ -1,0 +1,173 @@
+body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #f8f9fa;
+}
+.login-form {
+    padding: 2rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    background: #ffffff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('/static/Raleway-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+.divPrincipal{
+    background-color: #202634;
+    height: 100vh; 
+    overflow-y: auto;
+}
+.contenedorTarjetaForm{
+    background-color: #293042;   
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+/*
+Al usar Flexbox y usar flex-direction: column;
+Se cambian los que representan centrado horizonta y vertical
+---Caso normal Predeterminado, los elementos se colocan uno al lado del otro
+flex-direction: row;
+justify-content: center; /*Centra el contenido horizontalmente.
+align-items: center; /*Centra el contenido verticalmente.
+
+---Caso modificado, los elementos se colocan uno abajo del otro
+flex-direction: column;
+justify-content: center; → Centrado Vertical.
+align-items: center; → Centrado Horizontal.
+*/
+.imagenLogin{
+    margin-top: 2em;
+    width: 40%;
+    height: 40%;
+}
+.textoBienvenida{
+    font-family: "Poppins";
+    color: white;
+    width: 80%;
+    font-size: 1.5em;
+}
+.divLabelInput{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.labelInputs{
+    font-family: "Raleway";
+    color: white;
+    margin-top: 1em;
+    font-size: 1.5em;
+}
+.divInputIcon {
+    display: flex; 
+    align-items: center; 
+    width: 80%; 
+    background-color: #202634; 
+    border-radius: 6px; 
+    padding: 0.5em; 
+}
+
+.divInputIcon i {
+    color: #aaa; 
+    margin-right: 0.5em; 
+    font-size: 1.2em; 
+}
+
+.inputForm {
+    flex: 1; /* Hace que el input ocupe todo el espacio restante */
+    border: none; 
+    background: transparent; /* Quita fondo del input (lo hereda del contenedor) */
+    color: white; 
+    font-family: "Poppins";
+    font-size: 1em;
+    padding: 0.5em; /* Quita padding adicional */
+    width: 70%;
+}
+.inputForm::placeholder {
+    color: rgb(141, 141, 141); 
+}
+
+.inputForm:focus {
+    outline: none; 
+}
+
+.formularioInicio{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+.bottonEnviar{
+    color: white;
+    padding: 0.5em 1em 0.5em 1em;
+    margin: 1em;
+    font-family: "Raleway";
+    font-weight: 600;
+    font-size: 1em;
+    background-color: #3f80ea;
+    display: block;
+    border-style: none;
+    border-radius: 6px;
+    transition: background-color 0.1s ease-in-out, color 0.5s ease-in-out;
+}
+.bottonEnviar:hover{
+    background-color: #1d488b;
+}
+.fa-key {
+    color: rgb(175, 175, 175) !important;
+    font-size: 2em !important;
+    transition: color 0.3s ease-in-out; 
+}
+.fa-key:hover {
+    color: white !important;
+    font-size: 2em !important;
+    transition: color 0.3s ease-in-out; 
+}
+.fa-solid {
+    color: rgb(175, 175, 175) !important;
+    font-size: 2em !important;
+    transition: color 0.3s ease-in-out; 
+}
+.fa-solid:hover {
+    color: white !important;
+    font-size: 2em !important;
+}
+
+ul.errorlist {
+    list-style: none; /* Elimina los puntos de las listas con clase 'errorlist' */
+    padding: 0;       /* Elimina el espacio a la izquierda */
+    color: white; /* Color del texto */
+    font-family: "Poppins";
+    font-size: 1em;
+    background-color: #ea3f3f5c;
+}
+li {
+    list-style: none; /* Elimina cualquier punto de los elementos <li> */
+}
+  
+
+/*
+El problema radica en el uso incorrecto de la propiedad justify-content dentro del CSS del input (.test3). La propiedad justify-content no funciona en elementos individuales; se aplica solo a contenedores flex para alinear sus hijos.
+*/

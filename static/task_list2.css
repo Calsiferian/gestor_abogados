@@ -1,0 +1,250 @@
+/*Titulo vista y formlario de busqueda*/
+.tituloClientes{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5em;
+    margin-left: 0.5em;
+    text-decoration: none;
+}
+.inputsCrearNuevaTarea{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    width: 70%;
+    transition: background-color 0.3s ease-in-out; 
+}
+.inputsCrearNuevaTarea:hover{
+    background-color: #0f3b83;
+}
+.inputsCrearNuevaTarea::placeholder{
+    color: white;
+}
+.selecNombreNumero:focus, .inputsCrearNuevaTarea:focus {
+    outline: none; 
+}
+.formFiltrarNombreNumero{
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}  
+.botonEnviarFormularioFiltrar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEnviarFormularioFiltrar:hover{
+    background-color: #0f3b83;
+}
+a {
+    text-decoration: none;
+}
+.botonCrearCliente {
+    display: flex;                /* Activa el modo flexbox */
+    align-items: center;          /* Alinea verticalmente los elementos en el centro */
+    justify-content: center;      /* Opcional: centra el contenido horizontalmente */
+    gap: 0.5em;                   /* Espaciado entre el icono y el texto */
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3fea4d;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;           /* Ajusta el espacio interior del botón */
+    transition: background-color 0.3s ease-in-out; 
+}
+
+.botonCrearCliente i {
+    margin: 0;                    /* Elimina cualquier margen adicional del ícono */
+}
+
+.botonCrearCliente:hover{
+    background-color: #086810;
+}
+
+.botonCrearCliente {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5em;
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3fea4d;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out;
+}
+
+
+/*Mostrar tareas registradas*/
+.divdatosClientes {
+    display: flex;
+    justify-content: center;
+    text-align: center !important;
+} 
+
+/*Iniicio contenido*/
+.divTituloTabla{
+    display: flex;
+    align-items: end;
+}
+.tituloClientes{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+
+    
+
+/*Inicio Seccion de tareas*/
+/* Añadir margen entre columnas utilizando un selector de columnas dentro de la fila 
+
+.row > .col-md-4, .row > .col-md-2 {
+    padding-left: 15px;  
+    padding-right: 15px;
+}
+*/
+.row > .col-md-4, .row > .col-md-2 {
+    padding-left: 8px;  
+    padding-right: 8px;
+}
+.row{
+    --bs-gutter-x: 0 !important;
+    --bs-gutter-y: 0 !important;
+}
+
+
+/* Estilo para las cajas dentro de las columnas */
+.box {
+    background-color: #495779;
+    text-align: left;
+    border: 0px ;
+    border-radius: 6px;
+    padding: 0.5em;
+    margin-top: 1em;
+}
+.divtituloTarea {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5em;
+}
+.tituloTarea {
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1em;
+    margin-right: 0.5em;
+}
+.divtextoTarea{
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding: 0.5em;
+    text-align: left;
+}
+.textoTarea{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+}
+.fa-user-plus, .fa-pen-to-square, .fa-trash {
+    color: white !important;
+    font-size: 1.5em !important;
+}
+.fa-pen-to-square, .fa-trash, .fa-square-check {
+    color: white !important;
+    font-size: 1em !important;
+}
+.botonHecho{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3fea4d;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonHecho:hover{
+    background-color: #086810;
+}
+
+.botonEditar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #3f80ea;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEditar:hover{
+    background-color: #0f3b83;
+}
+.botonEliminar{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    text-decoration: none;
+    background-color: #ea3f3f;
+    border-style: none;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.botonEliminar:hover{
+    background-color: #830f0f;
+}
+.textoDataTarea {
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 600;
+    font-size: 1em;
+    margin-right: 0.5em;
+}
+.tituloDataTarea{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 1em;
+}
+
+/*Fin Seccion de tareas*/
+
