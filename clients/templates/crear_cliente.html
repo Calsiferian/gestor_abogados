@@ -12,6 +12,16 @@
             <p class="tituloFormulario">{% if actualizar %}Actualizar{% else %}Crear{% endif %} Cliente</p>
             <form method="POST" class="formularioActualizar mt-3">
                 {% csrf_token %}
+                {% if is_moderator %}
+                <div class="divLabelInput">
+                    <label for="{{ form.description.id_for_label }}" class="labelInputs mt-3">Abogado responsable</label>                            
+                    <div class="divInputIcono">
+                        <i class="fa-solid fa-user-pen"></i>
+                        {{ form.abogado}}
+                    </div>
+                </div>
+
+                {% endif %}
                 <div class="divLabelInput">
                     <label for="{{ form.description.id_for_label }}" class="labelInputs">Cliente</label>                            
                     <div class="divInputIcono">
