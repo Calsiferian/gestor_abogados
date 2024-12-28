@@ -8,7 +8,7 @@ from django.utils.dateparse import parse_date
 class PaymentForm(forms.ModelForm):
     class Meta:
         model = Payments  # Asociamos el formulario al modelo Payments
-        fields = ['cliente', 'valor_pago', 'fecha_pago', 'tipo_venta', 'canal_pago']  # Campos que se incluirán en el formulario
+        fields = ['comprobante','cliente', 'valor_pago', 'fecha_pago', 'tipo_venta', 'canal_pago']  # Campos que se incluirán en el formulario
 
     def __init__(self, *args, **kwargs):
         user = kwargs.pop('user')  # Extraemos el usuario que inició sesión (pasado desde la vista)
@@ -19,6 +19,9 @@ class PaymentForm(forms.ModelForm):
 
         # Agregamos la clase CSS y los placeholders a los inputs
         self.fields['cliente'].widget.attrs.update({
+            'class': 'inputCrearPago'
+        })
+        self.fields['comprobante'].widget.attrs.update({
             'class': 'inputCrearPago'
         })
         self.fields['valor_pago'].widget.attrs.update({

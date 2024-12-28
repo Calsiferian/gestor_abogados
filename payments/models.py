@@ -4,6 +4,7 @@ from clients.models import Cliente  # Importamos el modelo Cliente desde la apli
 
 class Payments(models.Model):
     # Asociamos cada pago a un cliente
+    comprobante = models.IntegerField()  # comprobante
     cliente = models.ForeignKey(Cliente, related_name='paymets', on_delete=models.CASCADE)
     
     # Campos adicionales
