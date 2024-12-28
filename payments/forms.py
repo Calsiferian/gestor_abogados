@@ -11,13 +11,12 @@ class PaymentForm(forms.ModelForm):
         fields = ['comprobante','cliente', 'valor_pago', 'fecha_pago', 'tipo_venta', 'canal_pago']  # Campos que se incluirán en el formulario
 
     def __init__(self, *args, **kwargs):
-        user = kwargs.pop('user')  # Extraemos el usuario que inició sesión (pasado desde la vista)
-        super().__init__(*args, **kwargs)  # Inicializamos el formulario con el método de la clase base
+        # Extraer el usuario de kwargs (si está presente)
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)  # Llamar al constructor base de Form
 
-        # Filtramos el campo 'cliente' para que solo muestre los clientes asociados al abogado actual
-        self.fields['cliente'].queryset = Cliente.objects.filter(abogado=user)
 
-        # Agregamos la clase CSS y los placeholders a los inputs
+          ########################################################        # Agregamos la clase CSS y los placeholders a los inputs
         self.fields['cliente'].widget.attrs.update({
             'class': 'inputCrearPago'
         })
@@ -38,6 +37,15 @@ class PaymentForm(forms.ModelForm):
         self.fields['canal_pago'].widget.attrs.update({
             'class': 'inputCrearPago'
         })
+      ################################################################## Sugerencia volver gidwets o sacar de ahí 
+
+        if self.user.groups.filter(name='Moderador').exists(): # Si el usuario es moderador
+            self.fields['cliente'].queryset = Cliente.objects.all() # Mostrar lista de todos los clientes del sistema
+            
+        else:  # Si no es moderador
+            self.fields['cliente'].queryset = Cliente.objects.filter(abogado=user) # mostrar solo clientes del usuario
+          
+        
 
     # Validación para asegurarnos de que el valor_pago sea un número entero positivo
     def clean_valor_pago(self):
