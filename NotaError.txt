@@ -1,4 +1,9 @@
 Realizado
+
+- Añadir a "Pagos" la opcion de añadir el numero de comprobante, ya esta creado el espacio en html para el listado
+
+- El formulario de crear pago no funcionaba ()
+
 App Login
 - El formulario creado en forms.py no funcionaba, ya que al crear el renderizado de la pagina, se estaba enviando el formulario predeterminado por python (O Django) en lugar de importar el creado en forms.py y renderizar ese.
 
@@ -43,6 +48,3 @@ Tareas para ese dia
 Tareas faltantes 
 Tareas pasadas
 
-- Añadir a "Pagos" la opcion de añadir el numero de comprobante, ya esta creado el espacio en html para el listado
-
-- El formulario de crear pago no funcionaba
