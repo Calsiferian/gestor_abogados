@@ -1,6 +1,8 @@
 from django import forms
 from .models import Task
+from clients.models import Cliente
 from django.contrib.auth.models import User
+
 
 
 class TaskForm(forms.ModelForm):
@@ -15,11 +17,18 @@ class TaskForm(forms.ModelForm):
             ),
         }
 
+    def __init__(self, *args, **kwargs):
+        # Extraer el usuario de kwargs (si está presente)
+        self.user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)  # Llamar al constructor base de Form
 
-#class TaskForm(forms.ModelForm):
-#    class Meta:
-#        model = Task
-#        fields = ['cliente',  'tarea', 'fecha_tarea']
+        if self.user.groups.filter(name='Moderador').exists(): # Si el usuario es moderador
+            self.fields['cliente'].queryset = Cliente.objects.all() # Mostrar lista de todos los clientes del sistema
+            
+        else:  # Si no es moderador
+            self.fields['cliente'].queryset = Cliente.objects.filter(abogado=self.user) # mostrar solo clientes del usuario
+
+
 
 
 class TaskSearchForm(forms.Form):

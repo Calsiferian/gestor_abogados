@@ -41,14 +41,14 @@ def task_list(request):
 def task_create(request):
     """Crea una nueva tarea."""
     if request.method == 'POST':
-        form = TaskForm(request.POST)
+        form = TaskForm(request.POST,user=request.user)
         if form.is_valid():
             task = form.save(commit=False)
             task.abogado = request.user
             task.save()
             return redirect('schedule:task_list')
     else:
-        form = TaskForm()
+        form = TaskForm(user=request.user)
     return render(request, 'task_create.html', {'form': form})
 
 @login_required
