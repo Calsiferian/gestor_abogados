@@ -68,7 +68,10 @@
         </div>
         <div class="col-md-2">
             {% if is_moderator %}
-            <td>{{ cliente.abogado.username }}</td>    <!--  FALTA Mostrando el nombre de usuario del abogado -->
+            <div class="box">
+                <p class="tituloTarea">Abogado responsable</p>
+                <p class="textoTarea">{{ task.cliente.abogado.username }}</p>
+            </div>
             {% endif %}
             <div class="box">
                 <p class="tituloTarea">Nombre Cliente</p>

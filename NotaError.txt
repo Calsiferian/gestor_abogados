@@ -41,6 +41,7 @@ Mientras que en el Login se hace asi
 
 
 - Creo que los abogados no deberian tener la opcion para ver el boton de eliminar cliente si no la pueden usar, confirmar para eliminar ese boton
+    //R. de acuerdo, si se elimina un cliente se eliminan tambien los pagos y tareas asociadas al mismo, es peligroso eliminar un cliente. 
 
 
 
