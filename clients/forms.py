@@ -9,20 +9,26 @@ class ClienteForm(forms.ModelForm):
         widgets = {
             'nombres': forms.TextInput(attrs={'class': 'inputActualizarCliente'}),
             'telefono': forms.TextInput(attrs={'class': 'inputActualizarCliente'}),
+            'abogado': forms.Select(attrs={'class': 'inputActualizarCliente'}),
         }
 
     def __init__(self, *args, **kwargs):
-        # Extraer el usuario de kwargs (si está presente)
-        self.user = kwargs.pop('user', None)
-        super().__init__(*args, **kwargs)  # Llamar al constructor base de Form
+        user = kwargs.pop('user', None)  # Obtener el usuario desde la vista
+        super().__init__(*args, **kwargs)
 
-        if self.user.groups.filter(name='Moderador').exists(): # Si el usuario es moderador
-            self.fields['abogado'].queryset = User.objects.exclude(is_superuser=True) # Mostrar solo usuarios relevantes
-            self.fields['abogado'].widget.attrs.update({'class': 'inputActualizarCliente'})
-        else:  # Si no es moderador
-            self.fields['abogado'].widget = forms.HiddenInput()  # Ocultamos el campo
-            self.fields['abogado'].initial = self.user  # Asignamos automáticamente el usuario actual
-        
+        # Si el usuario es un moderador, permitir seleccionar abogados
+        if user and user.groups.filter(name='Moderador').exists():
+            self.fields['abogado'].queryset = User.objects.exclude(is_superuser=True)  # Mostrar todos los usuarios excepto el superusuario
+        else:
+            # Si no es moderador, asignar al usuario actual como abogado
+            self.fields['abogado'].queryset = User.objects.filter(username=user.username)  # Solo mostrar el usuario actual
+            self.fields['abogado'].required = False  # Hacer que el campo no sea obligatorio si no es moderador
+
+    def clean_abogado(self):
+        abogado = self.cleaned_data.get('abogado')
+        if not abogado:  # Si no se selecciona un abogado
+            return None  # Retornar None si no se selecciona un abogado
+        return abogado
 
 class ClienteSearchForm(forms.Form):
     nombre = forms.CharField(

@@ -34,20 +34,18 @@ def listar_clientes(request):
 @login_required
 def crear_cliente(request):
     if request.method == 'POST':
-        form = ClienteForm(request.POST, user=request.user)
+        form = ClienteForm(request.POST, user=request.user)  # Pasar el usuario a la vista
         if form.is_valid():
             cliente = form.save(commit=False)
-            if not request.user.groups.filter(name='Moderador').exists():  # Si no es moderador, asigna el abogado como el usuario actual
+            # Si no es moderador, asignamos el abogado como el usuario actual
+            if not request.user.groups.filter(name='Moderador').exists():
                 cliente.abogado = request.user
             form.save()
             return redirect('clients:list_clients')
+        else:
+            print(form.errors)  # Imprimir los errores del formulario para depuración
     else:
-        form = ClienteForm(user=request.user)
-
-        # Si el usuario no es moderador, oculta el campo 'abogado' y asigna automáticamente el usuario por probar
-        if not request.user.groups.filter(name='Moderador').exists():
-            form.fields['abogado'].widget = forms.HiddenInput()
-            form.initial['abogado'] = request.user  # Asignar abogado automáticamente
+        form = ClienteForm(user=request.user)  # Pasar el usuario a la vista
 
     return render(request, 'crear_cliente.html', {'form': form})
 

@@ -3,6 +3,7 @@ Realizado
 - Añadir a "Pagos" la opcion de añadir el numero de comprobante, ya esta creado el espacio en html para el listado
 
 - El formulario de crear pago no funcionaba ()
+-- El perfil de moderador al crear un cliente o tarea debe poderse agregar a un abogado, en este momento se crean pero para si mismo, agregar pago se haria automaticamente al abogado que creo X cliente
 
 App Login
 - El formulario creado en forms.py no funcionaba, ya que al crear el renderizado de la pagina, se estaba enviando el formulario predeterminado por python (O Django) en lugar de importar el creado en forms.py y renderizar ese.
@@ -41,7 +42,7 @@ Mientras que en el Login se hace asi
 
 - Creo que los abogados no deberian tener la opcion para ver el boton de eliminar cliente si no la pueden usar, confirmar para eliminar ese boton
 
-- El perfil de moderador al crear un cliente o tarea debe poderse agregar a un abogado, en este momento se crean pero para si mismo, agregar pago se haria automaticamente al abogado que creo X cliente
+
 
 - Falta que en tareas se dividan en:
 Tareas para ese dia

@@ -43,7 +43,7 @@ class PaymentForm(forms.ModelForm):
             self.fields['cliente'].queryset = Cliente.objects.all() # Mostrar lista de todos los clientes del sistema
             
         else:  # Si no es moderador
-            self.fields['cliente'].queryset = Cliente.objects.filter(abogado=user) # mostrar solo clientes del usuario
+            self.fields['cliente'].queryset = Cliente.objects.filter(abogado=self.user) # mostrar solo clientes del usuario
           
         
 
