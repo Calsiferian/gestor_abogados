@@ -40,53 +40,111 @@
 <!--Mostrar tareas registradas-->
 <div class="container-fluid">
     <div class="row">
-        {% for task in tasks %}
-        <div class="col-4">
-            <div class="box">
-                <div class="divtituloTarea">
-                    <p class="tituloTarea">Tarea a realizar</p>
-                    <a href="{% url 'schedule:task_edit' task.id %}">
-                        <button class="botonEditar" title="Editar Nota">
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            Editar
-                        </button>
-                    </a>
-                    
-                    <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
-                            <i class="fa-solid fa-trash"></i>
-                            Borrar
-                        </button>
-                    </form>
+        <!-- Bloque de tareas para ese día -->
+        <div class="col-12">
+            <h2>Tareas para este día</h2>
+            {% if tasks_hoy %}
+                {% for task in tasks_hoy %}
+                <div class="box">
+                    <div class="divtituloTarea">
+                        <p class="tituloTarea">Tarea a realizar</p>
+                        <a href="{% url 'schedule:task_edit' task.id %}">
+                            <button class="botonEditar" title="Editar Nota">
+                                <i class="fa-regular fa-pen-to-square"></i> Editar
+                            </button>
+                        </a>
+                        <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
+                                <i class="fa-solid fa-trash"></i> Borrar
+                            </button>
+                        </form>
+                    </div>
+                    <div class="divtextoTarea">
+                        <p class="textoTarea">{{ task.tarea }}</p>
+                        {% if is_moderator %}
+                        <p class="textoTarea">Abogado: {{ task.cliente.abogado.username }}</p>
+                        {% endif %}
+                        <p class="textoTarea">Cliente: {{ task.cliente }}</p>
+                        <p class="textoTarea">Fecha: {{ task.fecha_tarea }}</p>
+                    </div>
                 </div>
-        
-                <div class="divtextoTarea">
-                    <p class="textoTarea">{{ task.tarea }}</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-2">
-            {% if is_moderator %}
-            <div class="box">
-                <p class="tituloTarea">Abogado responsable</p>
-                <p class="textoTarea">{{ task.cliente.abogado.username }}</p>
-            </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay tareas para este día.</p>
             {% endif %}
-            <div class="box">
-                <p class="tituloTarea">Nombre Cliente</p>
-                <p class="textoTarea">{{ task.cliente }}</p>
-            </div>
-            <div class="box">
-                <p class="tituloTarea">Fecha tarea</p>
-                <p class="textoTarea">{{ task.fecha_tarea }}    </p>
-            </div>
         </div>
-        {% empty %}
-        <tr>
-            <td colspan="4">No se encontraron tareas.</td>
-        </tr>       
-        {% endfor %} 
+
+        <!-- Bloque de tareas faltantes -->
+        <div class="col-12">
+            <h2>Tareas faltantes</h2>
+            {% if tasks_futuras %}
+                {% for task in tasks_futuras %}
+                <div class="box">
+                    <div class="divtituloTarea">
+                        <p class="tituloTarea">Tarea a realizar</p>
+                        <a href="{% url 'schedule:task_edit' task.id %}">
+                            <button class="botonEditar" title="Editar Nota">
+                                <i class="fa-regular fa-pen-to-square"></i> Editar
+                            </button>
+                        </a>
+                        <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
+                                <i class="fa-solid fa-trash"></i> Borrar
+                            </button>
+                        </form>
+                    </div>
+                    <div class="divtextoTarea">
+                        <p class="textoTarea">{{ task.tarea }}</p>
+                        {% if is_moderator %}
+                        <p class="textoTarea">Abogado: {{ task.cliente.abogado.username }}</p>
+                        {% endif %}
+                        <p class="textoTarea">Cliente: {{ task.cliente }}</p>
+                        <p class="textoTarea">Fecha: {{ task.fecha_tarea }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay tareas faltantes.</p>
+            {% endif %}
+        </div>
+
+        <!-- Bloque de tareas pasadas -->
+        <div class="col-12">
+            <h2>Tareas pasadas</h2>
+            {% if tasks_pasadas %}
+                {% for task in tasks_pasadas %}
+                <div class="box">
+                    <div class="divtituloTarea">
+                        <p class="tituloTarea">Tarea a realizar</p>
+                        <a href="{% url 'schedule:task_edit' task.id %}">
+                            <button class="botonEditar" title="Editar Nota">
+                                <i class="fa-regular fa-pen-to-square"></i> Editar
+                            </button>
+                        </a>
+                        <form action="{% url 'schedule:task_delete' task.id %}" method="post" style="display:inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="botonEliminar" onclick="return confirm('¿Estás seguro de borrar esta tarea?');">
+                                <i class="fa-solid fa-trash"></i> Borrar
+                            </button>
+                        </form>
+                    </div>
+                    <div class="divtextoTarea">
+                        <p class="textoTarea">{{ task.tarea }}</p>
+                        {% if is_moderator %}
+                        <p class="textoTarea">Abogado: {{ task.cliente.abogado.username }}</p>
+                        {% endif %}
+                        <p class="textoTarea">Cliente: {{ task.cliente }}</p>
+                        <p class="textoTarea">Fecha: {{ task.fecha_tarea }}</p>
+                    </div>
+                </div>
+                {% endfor %}
+            {% else %}
+                <p>No hay tareas pasadas.</p>
+            {% endif %}
+        </div>
     </div>
 </div>
+
 {% endblock %}

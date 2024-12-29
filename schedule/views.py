@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from .models import Task
 from .forms import TaskForm
 from .forms import TaskSearchForm
+from datetime import date
 
 def is_moderator(user):
     """Verifica si el usuario pertenece al grupo Moderador."""
@@ -11,6 +12,10 @@ def is_moderator(user):
 @login_required
 def task_list(request):
   # Lógica para filtrar las tareas
+
+    today = date.today()
+
+    # Filtrar tareas según si el usuario es moderador o abogado
     if is_moderator(request.user):
         tasks = Task.objects.all()  # Moderadores pueden ver todas las tareas
     else:
@@ -35,7 +40,19 @@ def task_list(request):
         if fecha_fin:
             tasks = tasks.filter(fecha_tarea__lte=fecha_fin)
 
-    return render(request, 'task_list.html', {'form': form, 'tasks': tasks})
+        # Categorizar las tareas
+        tasks_hoy = tasks.filter(fecha_tarea=today)  # Tareas para este día
+        tasks_futuras = tasks.filter(fecha_tarea__gt=today)  # Tareas faltantes
+        tasks_pasadas = tasks.filter(fecha_tarea__lt=today)  # Tareas pasadas
+
+        return render(request, 'task_list.html', {
+            'form': form,
+            'tasks_hoy': tasks_hoy,
+            'tasks_futuras': tasks_futuras,
+            'tasks_pasadas': tasks_pasadas,
+        })
+
+        
 
 @login_required
 def task_create(request):
