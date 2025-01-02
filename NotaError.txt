@@ -51,4 +51,13 @@ Mientras que en el Login se hace asi
     //R. de acuerdo, si se elimina un cliente se eliminan tambien los pagos y tareas asociadas al mismo, es peligroso eliminar un cliente. 
 
 
+31/12/2024
+Revisar errores del Login
 
+¿Como se manejara el tema de olvido y cambio de contraseña? Entiendo que eso lo hare yo por medio de la administracion de Django, pero  ¿Como me notificaran que olvidaron la contraseña? ¿Y como le notificare al usuario su nueva contraseña? No se si valga la pena registrar los correos de los usuarios para por alli enviarles la nueva contraseña.
+
+Quitar del modulo de pagos y tareas la posibilidad de filtrar un por abogado desde el perfil de abogados, ya que no tiene sentido. Porfa cuenteme cual es la forma mas sencilla de hacer esto, no se si modificarlo desde el propio forms.py o hacerlo desde el FrontEnd añadiendo una clase css al elemento para que lo quite cuando sea visto por un abogado.
+
+Los botones para editar tareas (De momento solo he verificado la vista de abogado) marcan error.    
+
+Se elimina del Navbar opción de "Perfil" 

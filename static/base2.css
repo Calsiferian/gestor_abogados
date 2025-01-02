@@ -1,0 +1,119 @@
+.containerCreado{
+    display: grid;
+    min-height: 100vh; /* Hace que el contenedor ocupe toda la altura de la pantalla */
+    grid-template-rows: auto 1fr auto; /* Tres filas: header, main, footer */
+}   
+main {
+    background-color: #293042;
+}
+@font-face {
+    font-family: 'Poppins';
+    src: url('/static/Poppins-Regular.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Raleway';
+    src: url('/static/Raleway-VariableFont_wght.ttf');
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*Iniicio contenido*/
+.preBody {
+    margin: 0px;
+    padding: 0px;
+}
+.divbody {
+    background-color: #293042;
+    flex: 1; /* Ocupa todo el espacio disponible */
+}
+.pruebat1 {
+    background-color: #293042;
+}
+.pruebat2 {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    background-color: #293042;
+    border-radius: 6px;
+    padding: 0.5em;
+    margin-top: 1em;
+}
+.pruebat3 {
+    background-color: #293042;
+}
+
+.divUsuario{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    background-color: #293042;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: background-color 0.3s ease-in-out; 
+}
+.iconoUsuario{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 1em;
+    margin-left: 0.5em;
+    text-decoration: none;
+}
+p{
+    margin-bottom: 0rem !important;
+}
+.botonCambioTema{
+    border-style: none;
+    background-color: red;
+    border-radius: 6px;
+    padding: 0.5em;
+    transition: color 0.3s ease-in-out; 
+    margin: 0.5em;
+}
+.botonCambioTema:hover{
+    border-style: none;
+    background-color: orange;
+    border-radius: 6px;
+}
+.nombreUser{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+    margin-right: 1em;
+}
+.fa-sun, .fa-circle-user{
+    color: white !important;
+    font-size: 1em !important;
+}
+
+
+
+
+
+
+
+
+
+
+/*Footer*/
+.espaciadoFooter{
+    background-color: #293042;
+    padding: 1em;
+}
+footer {
+    background-color: #202634;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    position: relative;;
+}
+.textoFooter{
+    font-family: "Poppins";
+    color: white !important;
+    font-weight: 400;
+    font-size: 0.8em;
+}
+

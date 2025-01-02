@@ -109,13 +109,13 @@
             <div class="col-1 pruebat1"></div>
             <div class="col-10">  
                 <div class="row tablaTitulosClientes">
-                    <div class="col-4 divtitulosTablasClientes">
+                    <div class="col-5 divtitulosTablasClientes">
                         <p class="titulosTabla">Nombre</p>
                     </div>
                     <div class="col-4 divtitulosTablasClientes">
                         <p class="titulosTabla">Teléfono</p>
                     </div>
-                    <div class="col-4 divtitulosTablasClientes">
+                    <div class="col-3 divtitulosTablasClientes">
                         <p class="titulosTabla">Acción</p>
                     </div>
                 </div>                        
@@ -128,24 +128,18 @@
                 <div class="col-1 pruebat1"></div>
                 <div class="col-10">  
                     <div class="row tablaDatosClientes">
-                        <div class="col-4 divdatosClientes">
+                        <div class="col-5 divdatosClientes">
                             <p class="datosCliente">{{ cliente.nombres }}</p>
                         </div>
                         <div class="col-4 divdatosClientesT">
                             <p class="datosCliente">{{ cliente.telefono }}</p>
                         </div>
                         
-                        <div class="col-4 divtitulosTablasClientes">
+                        <div class="col-3 divtitulosTablasClientes">
                             <a href="{% url 'clients:update_client' cliente.id %}">
                                 <button class="botonEditar">
                                     <i class="fa-regular fa-pen-to-square"></i>
                                     Editar
-                                </button>
-                            </a>
-                            <a href="{% url 'clients:erase_client' cliente.id %}">
-                                <button class="botonEliminar">
-                                    <i class="fa-solid fa-trash"></i>
-                                    Eliminar
                                 </button>
                             </a>
                         </div>

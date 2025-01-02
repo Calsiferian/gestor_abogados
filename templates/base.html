@@ -5,8 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{% static 'base.css' %}">
+    <link rel="stylesheet" href="{% static 'base2.css' %}">
     <title>Gestor Abogados</title>
+    <link rel="icon" href="{% static '/1.svg' %}" type="image/x-icon">
 </head>
 <body>
 <div class="containerCreado">
@@ -18,8 +19,7 @@
             <div class="row">
                 <div class="col-1 pruebat1"></div>
                 <div class="col-10">                            
-                    <div class="pruebat2">
-                        <button class="botonCambioTema"><i class="fa-solid fa-sun"></i></button>
+                    <div class="pruebat2 mt-4">
                         <p class="nombreUser">¡Hola, {{ user.username }}! Bienvenido de nuevo.</p>
                         <i class="fa-solid fa-circle-user"></i>
                     </div>
@@ -38,6 +38,7 @@
             {% endblock %}
         </div>
     </main>
+    <div class="container-fluid espaciadoFooter"></div>
     <footer>
         <center>
             <p class="textoFooter">Aliado Legal</p>
